@@ -1,0 +1,23 @@
+.myLinks{
+    background-color: #002026;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.my_tiltle{
+    color: #E79128;
+}
+
+.nav_lnks{
+    display: flex;
+    gap: 100px;
+}
+
+.nav_lnks >a{
+    text-decoration: none;
+    color: #AEB8B6;
+}
+
