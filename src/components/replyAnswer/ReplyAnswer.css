@@ -1,65 +1,56 @@
-.askQuetions{
+.reply{
     background-color: #E9E9E7;
+    gap: 20px;
+    min-height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 88vh;
 }
 
-.question_form{
+.reply_white{
+    background-color: white;
+    padding: 50px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
-.quiz_input{
-    width: 400px;
-    height: 30px;
+#reply_text{
+    padding: 10px;
     outline: none;
-    padding: 3px ;
 }
 
-#question{
-    width: 400px;
-    height: 80px;
-    outline: none;
-    padding: 3px ;
-}
-
-.white_bc{
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.saveQuiz{
+.answer_quiz{
     background-color: #565941;
+    color: white;
     border-radius: 5px;
-    outline: none;
     border: none;
+    outline: none;
+    padding: 5px 10px;
 }
 
-.saveQuiz > a{
+.answer_quiz > a{
     color: white;
     text-decoration: none;
 }
 
-.cancel{
+.cancel_answer{
     background-color: #A47B5C;
+    color: white;
+    border: none;
     border-radius: 5px;
     outline: none;
-    border: none;
+    padding: 5px 10px;
 }
 
-.cancel > a{
+.cancel_answer> a{
     color: white;
     text-decoration: none;
 }
 
-.opt_buttons{
+.ans_button{
     display: flex;
-    gap: 20px;
-    margin: 10px;
-    /* justify-content: end; */
+    gap: 10px;
 }

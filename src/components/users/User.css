@@ -1,0 +1,9 @@
+.user_details{
+    background-color: #E9E9E7;
+    gap: 20px;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

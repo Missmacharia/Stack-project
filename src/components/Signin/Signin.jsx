@@ -10,7 +10,9 @@ const DEFAULT_FORM=
 
 const Signin = () => {
   const [userform, setUserForm]= useState(DEFAULT_FORM)
-  const [users, setUser]= useState([])
+  const [ setUser]= useState([])
+
+  const [error, setError]=useState("")
 
   const changeHandler=(e)=>{
     setUserForm((prev)=>({
@@ -20,6 +22,20 @@ const Signin = () => {
   }
 
   const submitHandler=(e)=>{
+    setError("")
+    console.log(setError('hello'))
+    if(userform.username===""){
+      setError("Fill in your name!")
+      return;
+    }
+    if(userform.email===""){
+      setError("Fill in the Emails!")
+      return;
+    }
+    if(userform.password===""){
+      setError("Password is required!")
+      return;
+    }
     e.preventDefault()
     const id=Math.ceil(Math.random()*10000)
     const newUser= {...userform, id}
@@ -30,6 +46,9 @@ const Signin = () => {
   return (
     <div className="signPage">
       <form className="signin_form">
+        {error &&(
+          <h1>{error}</h1>
+        )}
         <input type="file" name="image" />
         <input
           type="text"

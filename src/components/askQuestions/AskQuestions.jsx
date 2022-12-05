@@ -1,42 +1,37 @@
 import React, { useState } from "react";
-import { Link, Route } from "react-router-dom";
-import Home from "../home/Home";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { addQuestionAction, getQuestionsAction } from "../features/question";
 import "./AskQuestions.css";
 
 const DEFAULT_QUESTIONS={
-  title: "",
-  question: ""
+  Qtitle: "",
+  QDescription: "",
 }
 
 const AskQuestions = () => {
-
+  const dispatch= useDispatch()
+  
   const[questionForm, setQuestionForm]= useState(DEFAULT_QUESTIONS)
-  const [quiz, setQuiz]= useState([])
-  console.log(quiz.length);
+
+
+
   const handlerChange= (e)=>{
-    setQuestionForm((prev)=>({
-      ...prev, [e.target.name]: e.target.value
-    }))
+    setQuestionForm((prev)=>({...prev, [e.target.name]: e.target.value}))
   }
-const handlerSubmit=(e)=>{
+const handlerSubmit= (e)=>{
   e.preventDefault()
-  // const id= Math.ceil(Math.random()*100000)
-  const newQuiz=[
-    {
-      title: "hello",
-      question: "hey there"
-    }
-  ]
-  console.log(newQuiz);
-  // {...questionForm,id}
-  setQuiz(newQuiz)
-  setQuestionForm(DEFAULT_QUESTIONS)
+  const id= Math.ceil(Math.random()*100000)
+  const newQuestion= {...questionForm,id}
+   dispatch(addQuestionAction(newQuestion))
+  dispatch(getQuestionsAction())
+  console.log(newQuestion);
 }
 
 const cancelHandler=()=>{
   setQuestionForm(DEFAULT_QUESTIONS)
 }
-console.log(quiz);
+
   return (
     <div className="askQuetions">
       <div className="white_bc">
@@ -45,18 +40,18 @@ console.log(quiz);
           <input
             className="quiz_input"
             type="text"
-            name="title"
+            name="Qtitle"
             placeholder="Title of questions"
-            value={questionForm.title}
+            value={questionForm.Qtitle}
             onChange={handlerChange}
           />
           <textarea
-            name="question"
+            name="QDescription"
             id="question"
             placeholder="How to work with grid"
-            value={questionForm.question}
+            value={questionForm.QDescription}
             onChange={handlerChange}
-          ></textarea>H
+          ></textarea>
         </form>
         <div className="opt_buttons">
           <button onClick={cancelHandler} className="cancel">
@@ -67,8 +62,6 @@ console.log(quiz);
           </button>
         </div>
       </div>
-      
-     {quiz?.map((quiz=><Home quiz={quiz}/>))}
     </div>
   );
 };

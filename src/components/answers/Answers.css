@@ -1,0 +1,77 @@
+.myAnswers{
+    background-color: #E9E9E7;
+    height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quizAnsw{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px;
+    width: 600px;
+    
+}
+
+.myQuiz{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.myIcon :hover{
+    color: red;
+}
+
+.thoughts{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.like{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.like :hover{
+    color: red;
+}
+
+.comment_area{
+    outline: none;
+    padding: 5px;
+}
+
+.icons_answers{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.upvotes, .downvotes{
+    border-radius: 5px;
+}
+
+.submit{
+    background-color: #565941;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+}
+
+.cancel{
+    background-color: #A47B5C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 10px;
+}
