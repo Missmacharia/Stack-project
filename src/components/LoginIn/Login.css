@@ -1,0 +1,36 @@
+.login{
+    background-color: #E9E9E7;
+    gap: 20px;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    justify-content: center;
+}
+
+.login_form > input{
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+}
+
+.login_btn_user{
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 10px;
+    border: none;
+    width: 400px;
+    background-color: #565941;
+    color: white;
+}

@@ -11,67 +11,63 @@
     background-color: #FFFFFF;
     border-radius: 5px;
     padding: 10px;
-    width: 600px;
-    
+    width: 600px;  
 }
 
-.myQuiz{
+.btn_answers{
     display: flex;
+    height: 20px;
     align-items: center;
-    justify-content: space-between;
-}
-
-.myIcon :hover{
-    color: red;
+    gap: 20px;
 }
 
 .thoughts{
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-}
-
-.like{
-    display: flex;
     justify-content: space-between;
 }
 
-
-.like :hover{
-    color: red;
+.comments{
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.comment_area{
+.btn_comment{
+    background-color: #565941;
+    color: white;
+    padding: 5px 10px;
+    border: none;
     outline: none;
+    border-radius: 5px;
+}
+
+.increment_btn{
+    background-color: #565941;
+    color: white;
+    border: none;
+    border-radius: 5px;
     padding: 5px;
 }
 
-.icons_answers{
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.upvotes, .downvotes{
-    border-radius: 5px;
-}
-
-.submit{
-    background-color: #565941;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    padding: 5px 10px;
-}
-
-.cancel{
+.decrement_btn{
     background-color: #A47B5C;
     color: white;
     border: none;
     border-radius: 5px;
-    outline: none;
-    padding: 5px 10px;
+    padding: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

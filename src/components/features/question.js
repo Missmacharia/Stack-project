@@ -1,47 +1,68 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addDoc, collection, deleteDoc, deleteField, doc, getDocs } from "firebase/firestore";
+import axios from "axios";
+import { addDoc, collection, deleteDoc, deleteField, doc } from "firebase/firestore";
 import { firestoreDb } from "../../firebaseconfig";
 
+const getQuestionsUrl=`http://localhost:4000/questions/questions`
+const addQuestionUrl= `http://localhost:4000/questions/addQuiz`
 
 
-export const getQuestionsAction=createAsyncThunk(
-    "fetch/Question-one",
+export const getQuestionsAction= createAsyncThunk(
+    "question/fetch-one",
     async(args, thunkAPI)=>{
         try {
-
-            const questionsRef=collection(firestoreDb, "questions")
-            const docsSnap= await getDocs(questionsRef)
-            let questions= []
-            docsSnap.forEach((doc)=>{
-                const data= doc.data()
-                questions.push({id:doc.id,...data})
-            });
-            return{
-                questions
+            const response= await axios.get(getQuestionsUrl)
+            const res= response.data
+            const questions= []
+            
+            for(let key in res){
+                questions.push({
+                    id: key,
+                    userId: res[key].userId,
+                    title: res[key].title,
+                    question: res[key].question
+                })
             }
+            console.log(questions);
+            return questions;
         } catch (error) {
-            console.log(error);
             thunkAPI.rejectWithValue({
-                error:error.meassage
+                message: "Questions not found"
             })
         }
     }
 )
 
+
 export const addQuestionAction= createAsyncThunk(
     "add/newQuestion-one",
     async(newQuestion, thunkAPI)=>{
         try {
-            const questionsRef= collection(firestoreDb, "questions")
-            await addDoc(questionsRef, newQuestion)
-            return{}
+           const response = await axios.post(addQuestionUrl) 
+           return response.data
         } catch (error) {
             thunkAPI.rejectWithValue({
-                error:error.meassage
+                message: "Answer added successfully"
             })
         }
     }
-);
+)
+
+// export const addQuestionAction= createAsyncThunk(
+//     "add/newQuestion-one",
+//     async(newQuestion, thunkAPI)=>{
+//         try {
+//             const questionsRef= collection(firestoreDb, "questions")
+//             await addDoc(questionsRef, newQuestion)
+//             return{}
+//         } catch (error) {
+//             thunkAPI.rejectWithValue({
+//                 error:error.meassage
+//             })
+//         }
+//     }
+// );
 
 
 export const deleteQuestionAction= createAsyncThunk(
@@ -79,7 +100,7 @@ const questionsSlice= createSlice({
             state.loading= true
         });
         builder.addCase(getQuestionsAction.fulfilled, (state, action)=>{
-            state.questions= action.payload.questions
+            state.questions= action.payload
             console.log(action.payload);
             state.loading= false
         });

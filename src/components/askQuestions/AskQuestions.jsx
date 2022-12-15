@@ -5,8 +5,8 @@ import { addQuestionAction, getQuestionsAction } from "../features/question";
 import "./AskQuestions.css";
 
 const DEFAULT_QUESTIONS={
-  Qtitle: "",
-  QDescription: "",
+  title: "",
+  question: "",
 }
 
 const AskQuestions = () => {
@@ -40,16 +40,16 @@ const cancelHandler=()=>{
           <input
             className="quiz_input"
             type="text"
-            name="Qtitle"
+            name="title"
             placeholder="Title of questions"
-            value={questionForm.Qtitle}
+            value={questionForm.title}
             onChange={handlerChange}
           />
           <textarea
-            name="QDescription"
+            name="question"
             id="question"
             placeholder="How to work with grid"
-            value={questionForm.QDescription}
+            value={questionForm.question}
             onChange={handlerChange}
           ></textarea>
         </form>

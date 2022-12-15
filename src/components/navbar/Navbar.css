@@ -7,8 +7,9 @@
     padding: 10px;
 }
 
-.my_tiltle{
+.my_tiltle > a{
     color: #E79128;
+    text-decoration: none;
 }
 
 .nav_lnks{

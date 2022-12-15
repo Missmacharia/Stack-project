@@ -5,16 +5,17 @@ import "./Navbar.css";
 const Navbar = () => {
   return (
     <div className="myLinks">
-      <div className="my_tiltle">
-        <h1>Stack OverFlow</h1>
-      </div>
+      <h1 className="my_tiltle">
+        <Link to="/">Stack OverFlow</Link>
+      </h1>
       <input type="text"
       className="serach"
       placeholder="search" />
       <div className="nav_lnks">
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link> */}
+        <Link to="/profile">Profile</Link>
+        <Link to="/login">Login</Link>
         <Link to="/signin">Sign In</Link>
-        {/* <Link to="/user">User</Link> */}
       </div>
     </div>
   );
