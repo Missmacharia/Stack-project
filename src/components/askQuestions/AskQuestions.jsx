@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addQuestionAction, getQuestionsAction } from "../features/question";
+import { addQuestionAction, getQuestionsAction } from "../../features/question";
 import "./AskQuestions.css";
 
 const DEFAULT_QUESTIONS={
@@ -18,12 +18,18 @@ const AskQuestions = () => {
 
   const handlerChange= (e)=>{
     setQuestionForm((prev)=>({...prev, [e.target.name]: e.target.value}))
+    console.log(questionForm);
   }
+
+  
 const handlerSubmit= (e)=>{
   e.preventDefault()
   const id= Math.ceil(Math.random()*100000)
   const newQuestion= {...questionForm,id}
-   dispatch(addQuestionAction(newQuestion))
+   dispatch(addQuestionAction({
+    userId: "2542ebd5667w2dv", ...newQuestion
+   }))
+   console.log(newQuestion);
   dispatch(getQuestionsAction())
   console.log(newQuestion);
 }

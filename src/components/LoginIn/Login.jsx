@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginUserAction } from "../../features/user";
 import "./Login.css";
 
 const DEFAULT_LOGIN = {
@@ -11,8 +13,16 @@ const DEFAULT_LOGIN = {
 const Login = () => {
   const [loginForm, setLoginForm] = useState(DEFAULT_LOGIN);
 
+  const dispatch = useDispatch()
+
   const changeHandler= (e)=>{
     setLoginForm((prev)=>({...prev, [e.target.name]: e.target.value}))
+  }
+
+  const handlerSubmit =(e)=>{
+    e.preventDefault()
+    const user= {...loginForm}
+    dispatch(loginUserAction(user))
   }
 
   return (
@@ -33,7 +43,7 @@ const Login = () => {
           onChange={changeHandler}
         />
         <Link to="/">
-        <button className="login_btn_user">Submit</button>
+        <button onClick={handlerSubmit} className="login_btn_user">Submit</button>
         </Link>
       </form>
     </div>

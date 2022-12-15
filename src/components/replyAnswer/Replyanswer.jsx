@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 // import { addNewAnswerAction } from "../features/answer";
-import { incrementAction } from "../features/counter";
-import { addUserAction, fetchUserAction } from "../features/user";
+import { incrementAction } from "../../features/counter";
+import { loginUserAction } from "../../features/user";
+// import { addUserAction, fetchUserAction } from "../../features/user";
 import "./ReplyAnswer.css";
 
 
@@ -25,13 +26,13 @@ const Replyanswer = () => {
         e.preventDefault()
         const id = Math.ceil(Math.random()*1000000)
         const newanswer= {...answer, id}
-        dispatch(addUserAction(newanswer))
+        dispatch(loginUserAction(newanswer))
         dispatch(incrementAction())
     }
     
-    useEffect(()=>{
-      dispatch(fetchUserAction())
-    },[dispatch])
+    // useEffect(()=>{
+    //   dispatch(fetchUserAction())
+    // },[dispatch])
 
   return (
     <div className="reply">

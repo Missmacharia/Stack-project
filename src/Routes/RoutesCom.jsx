@@ -4,7 +4,7 @@ import Home from "../components/home/Home";
 import AskQuestions from "../components/askQuestions/AskQuestions";
 import Answers from "../components/answers/Answers";
 import Replyanswer from "../components/replyAnswer/Replyanswer";
-import User from "../components/features/user";
+import User from "../features/user";
 import Login from "../components/LoginIn/Login";
 import Profile from "../components/profile/Profile";
 import SignIn from "../components/Sign/SignIn";
