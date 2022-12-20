@@ -17,7 +17,7 @@ const RoutesCom = () => {
       <Routes>
        <Route path="/" element={<Home />} />
         <Route path="/askQuizs" element={<AskQuestions  /> }/>
-        <Route path="/answers" element={<Answers />} />
+        <Route path="/answers/:qid" element={<Answers />} />
         <Route path="/reply" element ={<Replyanswer /> } />
         <Route path="/users" element={<User /> } />
         <Route path="/login" element={ <Login />} />

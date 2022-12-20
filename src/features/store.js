@@ -3,6 +3,7 @@ import questionsReducer  from "../features/question";
 import  counterReducer  from "../features/counter";
 import  commentReducer  from "../features/comment";
 import  userReducer  from "../features/user";
+import answersReducer from '../features/answers';
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         counter: counterReducer,
         comment: commentReducer,
         users: userReducer,
+        answers: answersReducer
     }
 })
   

@@ -1,11 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { addAnswerAction } from "../../features/answers";
 // import { addNewAnswerAction } from "../features/answer";
 import { incrementAction } from "../../features/counter";
-import { loginUserAction } from "../../features/user";
+
 // import { addUserAction, fetchUserAction } from "../../features/user";
 import "./ReplyAnswer.css";
 
@@ -22,17 +22,13 @@ const Replyanswer = () => {
       setAnswer((prev)=>({...prev, [e.target.name]: e.target.value}))
     }
 
+    const {id}= useParams()
     const submitHandler=(e)=>{
         e.preventDefault()
-        const id = Math.ceil(Math.random()*1000000)
-        const newanswer= {...answer, id}
-        dispatch(loginUserAction(newanswer))
+        dispatch(addAnswerAction(id))
         dispatch(incrementAction())
     }
     
-    // useEffect(()=>{
-    //   dispatch(fetchUserAction())
-    // },[dispatch])
 
   return (
     <div className="reply">

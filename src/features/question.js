@@ -1,12 +1,11 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { askQuestions, getQuestion } from "../services/questionsService";
 // import {  deleteDoc, deleteField, doc } from "firebase/firestore";
 // import { firestoreDb } from "./firebaseconfig";
 
 const getQuestionsUrl=`http://localhost:8080/api/questions`
-
-const addQuestionUrl= `http://localhost:8080/api/addQuiz`
 
 const deleteQuestionUrl= `http://localhost:8080/api/deleteQuiz/:id`
 
@@ -17,17 +16,8 @@ export const getQuestionsAction= createAsyncThunk(
         try {
             const response= await axios.get(getQuestionsUrl)
             const res= response.data
-            const questions= []
-            
-            for(let key in res){
-                questions.push({
-                    id: key,
-                    userId: res[key].userId,
-                    title: res[key].title,
-                    question: res[key].question
-                })
-            }
-            return questions;
+   
+            return res;
         } catch (error) {
             thunkAPI.rejectWithValue({
                 error: error.message
@@ -36,24 +26,38 @@ export const getQuestionsAction= createAsyncThunk(
     }
 )
 
-export const addQuestionAction= createAsyncThunk(
-    "add/newQuestion-one",
-    async(newQuestion, thunkAPI)=>{
+export const getAQuestionAction= createAsyncThunk(
+    "question/fetch_aQuestion",
+    async(question, thunkAPI)=>{
         try {
-            await axios
-            .post(addQuestionUrl, newQuestion)
-            .then((data)=>console.log(data))
-            return{
-                newQuestion
-            }
+            const res = await getQuestion(question)
+            return res.data
+        } catch (error) {
+            thunkAPI.rejectWithValue({
+                error: error.message
+        })
+        }
+    }
+)
+
+
+export const addQuestionAction = createAsyncThunk(
+    "add/newQuestion-one",
+    async(question, thunkAPI)=>{
+        try {
+            console.log(question);
+            const response = await askQuestions(question)
+            console.log(response);
+            return {question: response}
         } catch (error) {
             thunkAPI.rejectWithValue({
                 error: error.message
             })
         }
     }
-
 )
+
+
 
 export const deleteQuestionsAction= createAsyncThunk(
     "delete/question-one",
@@ -70,28 +74,6 @@ export const deleteQuestionsAction= createAsyncThunk(
         }
     }
 )
-
-
-
-// export const deleteQuestionAction= createAsyncThunk(
-//     "delete/question-one",
-//     async(args, thunkAPI)=>{
-//         try {
-//             const questionsRef= doc(firestoreDb, "questions", "Dcsq8ehpzq7UG7ZnryjF")
-//             const data= deleteField()
-//             deleteDoc(questionsRef, data)
-//             return{}
-//         } catch (error) {
-//             thunkAPI.rejectWithValue({
-//                 error:error.meassage
-//             })
-            
-//         }
-//     }
-// )
-
-
-
 
 const initialState= {
     questions: [],
@@ -118,6 +100,15 @@ const questionsSlice= createSlice({
         builder.addCase(addQuestionAction.fulfilled, (state, action)=>{
             state.loading= false
         });
+
+        builder.addCase(getAQuestionAction.pending, (state, action)=>{
+            state.questions= action.payload
+            state.loading = false
+        })
+
+        builder.addCase(getAQuestionAction.fulfilled, (state, action)=>{
+            state.loading = true
+        })
 
         // builder.addCase(deleteQuestionAction.pending, (state, action)=>{
         //     state.loading= true

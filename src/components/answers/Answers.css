@@ -1,6 +1,6 @@
 .myAnswers{
     background-color: #E9E9E7;
-    height: 86vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,13 +23,28 @@
 
 .thoughts{
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn_reply{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn_reply> a{
+    text-decoration: none;
 }
 
 .comments{
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+#comment{
+    width: 400px;
 }
 
 .btn_comment{
@@ -47,6 +62,7 @@
     border: none;
     border-radius: 5px;
     padding: 5px;
+    margin-bottom: 10;
 }
 
 .decrement_btn{
@@ -55,6 +71,10 @@
     border: none;
     border-radius: 5px;
     padding: 5px;
+    margin-bottom: 10;
+}
+.user{
+    margin-top: 10px;
 }
 
 

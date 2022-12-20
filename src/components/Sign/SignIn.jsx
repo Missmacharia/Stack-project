@@ -34,7 +34,7 @@ const SignIn = () => {
       <form className="signin_form">
         <input
           type="text"
-          name="username"
+          name="userName"
           placeholder="yvonne"
           value={signupForm.userName}
           onChange={changeHandler}

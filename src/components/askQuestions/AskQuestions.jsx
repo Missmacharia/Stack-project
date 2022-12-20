@@ -24,11 +24,14 @@ const AskQuestions = () => {
   
 const handlerSubmit= (e)=>{
   e.preventDefault()
-  const id= Math.ceil(Math.random()*100000)
-  const newQuestion= {...questionForm,id}
-   dispatch(addQuestionAction({
-    userId: "2542ebd5667w2dv", ...newQuestion
-   }))
+  const userId=""
+  const newQuestion= {...questionForm}
+  //  dispatch(addQuestionAction({
+  //   userId, newQuestion
+  //  }))
+   dispatch(addQuestionAction(
+    newQuestion
+   ))
    console.log(newQuestion);
   dispatch(getQuestionsAction())
   console.log(newQuestion);

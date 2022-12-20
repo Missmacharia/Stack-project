@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { useDispatch } from "react-redux";
-import { getQuestionsAction } from "../../features/question";
+import { getAQuestionAction, getQuestionsAction } from "../../features/question";
 // import { decrementAction, incrementAction } from "../features/counter";
 // import { fetchUserAction } from "../../features/user";
 
@@ -43,8 +43,8 @@ const Home = () => {
           return (
             <div className="questions_part">
               <Link
-                // onClick={() => dispatch(fetchUserAction())}
-                to="/answers" >
+                onClick={() => dispatch(getAQuestionAction(question.id))}
+                to={`/answers/${question.id}`} >
                 <h1>{question?.title}</h1>
               </Link>
               <p>{question?.question}</p>

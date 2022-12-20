@@ -59,7 +59,7 @@ const usersSlice= createSlice({
             state.loading= true
         })
         builder.addCase(signUpUserAction.fulfilled, (state, action)=>{
-            state.users= action.payload.users
+            state.users= action.payload
             state.loading= false
         });
 
@@ -68,7 +68,7 @@ const usersSlice= createSlice({
         });
 
         builder.addCase(loginUserAction.fulfilled, (state, action)=>{
-            state.users= action.payload.users
+            state.users= action.payload
             state.loading= false
         })
     }

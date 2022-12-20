@@ -8,9 +8,11 @@ export const loginUser = async (users) => {
 
     return await axios.post(loginUrl, users).then((response) => {;
       //a condition to see if a user has a token
-      if (response.data.token) {
+      if (response.data.user) {
         //storing my data using chrome
         //passing in the name of the storage, convert the data into json and response to the data
+
+        console.log(response.data);
         sessionStorage.setItem("users", JSON.stringify(response.data));
       }
       return response.data;
