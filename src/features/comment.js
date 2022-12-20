@@ -1,26 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { firestoreDb } from "./firebaseconfig";
+import { addComments, getComments } from "../services/commentsServices";
 
 
 
-export const fetchcommentAction=createAsyncThunk(
-    "fetch/comment-one",
-    async(args, thunkAPI)=>{
+
+export const fetchcommentAction= createAsyncThunk(
+    "fetch/comments-one",
+    async(comments, thunkAPI)=>{
         try {
-            const commentRef=collection(firestoreDb, "comment")
-            const docsSnap= await getDocs(commentRef)
-            let comment = []
-            docsSnap.forEach((doc)=>{
-                const data= doc.data()
-                comment.push({id:doc.id, ...data})
-            });
-            return{
-                comment
-            }
+            const res= await getComments(comments)
+            return res.data
         } catch (error) {
             thunkAPI.rejectWithValue({
-                error:error.message
+                error: error.message
             })
         }
     }
@@ -28,11 +20,10 @@ export const fetchcommentAction=createAsyncThunk(
 
 export const addCommentAction= createAsyncThunk(
     "add/comment-one",
-    async(newComment, thunkAPI)=>{
+    async(comment, thunkAPI)=>{
         try {
-            const commentRef= collection(firestoreDb, "comment")
-            await addDoc(newComment, commentRef)
-            return{}
+            const response = await addComments(comment)
+            return {comment: response}
         } catch (error) {
             thunkAPI.rejectWithValue({
                 error:error.message

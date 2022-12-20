@@ -1,13 +1,13 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { askQuestions, getQuestion } from "../services/questionsService";
+import { askQuestions, deleteQuestion, getQuestion } from "../services/questionsService";
 // import {  deleteDoc, deleteField, doc } from "firebase/firestore";
 // import { firestoreDb } from "./firebaseconfig";
 
 const getQuestionsUrl=`http://localhost:8080/api/questions`
 
-const deleteQuestionUrl= `http://localhost:8080/api/deleteQuiz/:id`
+// const deleteQuestionUrl= `http://localhost:8080/api/deleteQuiz/:id`
 
 
 export const getQuestionsAction= createAsyncThunk(
@@ -57,23 +57,21 @@ export const addQuestionAction = createAsyncThunk(
     }
 )
 
-
-
-export const deleteQuestionsAction= createAsyncThunk(
+export const deleteQuestionAction= createAsyncThunk(
     "delete/question-one",
-    async(id, thunkAPI)=>{
+    async(question, thunkAPI)=>{
         try {
-            await axios
-            .delete(deleteQuestionUrl, id)
-            .then((data)=>console.log(data))
-            return{}
+            const response = await deleteQuestion(question)
+            return response
         } catch (error) {
             thunkAPI.rejectWithValue({
-                message: error.message
+                error: error.message
             })
         }
     }
 )
+
+
 
 const initialState= {
     questions: [],

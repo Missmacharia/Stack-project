@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import { useDispatch } from "react-redux";
 import { getAQuestionAction, getQuestionsAction } from "../../features/question";
-// import { decrementAction, incrementAction } from "../features/counter";
-// import { fetchUserAction } from "../../features/user";
+
 
 
 const Home = () => {
@@ -19,13 +18,6 @@ const Home = () => {
     dispatch(getQuestionsAction());
   }, [dispatch]);
 
-  // const upvoteHandler=()=>{
-  //   dispatch(incrementAction());
-  // }
-
-  // const downvoteHandler=()=>{
-  //   dispatch(decrementAction());
-  // }
 
   console.log(questions);
   return (

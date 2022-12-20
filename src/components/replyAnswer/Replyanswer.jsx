@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { addAnswerAction } from "../../features/answers";
 // import { addNewAnswerAction } from "../features/answer";
@@ -18,14 +18,16 @@ const Replyanswer = () => {
     const [answer, setAnswer]= useState(DEFAULT_REPLY)
     const dispatch = useDispatch()
 
+    const question = useSelector((state) => state.questions.questions);
+
     const changeHandler=(e)=>{
       setAnswer((prev)=>({...prev, [e.target.name]: e.target.value}))
     }
 
-    const {id}= useParams()
+    const {qid}= useParams()
     const submitHandler=(e)=>{
         e.preventDefault()
-        dispatch(addAnswerAction(id))
+        dispatch(addAnswerAction(qid))
         dispatch(incrementAction())
     }
     
@@ -44,7 +46,7 @@ const Replyanswer = () => {
         ></textarea>
         <div className="ans_button">
           <button onClick={submitHandler} className="answer_quiz" to="./answers" >
-            <Link to="/answers">Submit Answer</Link> 
+            <Link to={`/answers/${question.id}`}>Submit Answer</Link> 
             </button>
           <button className="cancel_answer">
             <Link to="/answers">Cancel</Link>
