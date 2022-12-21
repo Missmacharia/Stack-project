@@ -1,7 +1,7 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { askQuestions, deleteQuestion, getQuestion } from "../services/questionsService";
+import { askQuestions, deleteQuestion, getQuestion, searchQuestion } from "../services/questionsService";
 // import {  deleteDoc, deleteField, doc } from "firebase/firestore";
 // import { firestoreDb } from "./firebaseconfig";
 
@@ -57,6 +57,22 @@ export const addQuestionAction = createAsyncThunk(
     }
 )
 
+
+export const searchQuestionAction = createAsyncThunk(
+    "search/Question-one",
+    async(question, thunkAPI)=>{
+        try {
+            const response = await searchQuestion(question)
+            return response.data
+        } catch (error) {
+            thunkAPI.rejectWithValue({
+                error: error.message
+            })
+        }
+    }
+)
+
+
 export const deleteQuestionAction= createAsyncThunk(
     "delete/question-one",
     async(question, thunkAPI)=>{
@@ -84,7 +100,6 @@ const questionsSlice= createSlice({
     
     extraReducers:(builder)=>{
         builder.addCase(getQuestionsAction.pending, (state, action)=>{
-            
             state.loading= true
         });
         builder.addCase(getQuestionsAction.fulfilled, (state, action)=>{
@@ -101,19 +116,29 @@ const questionsSlice= createSlice({
 
         builder.addCase(getAQuestionAction.pending, (state, action)=>{
             state.questions= action.payload
-            state.loading = false
-        })
-
-        builder.addCase(getAQuestionAction.fulfilled, (state, action)=>{
             state.loading = true
         })
 
-        // builder.addCase(deleteQuestionAction.pending, (state, action)=>{
-        //     state.loading= true
-        // });
-        // builder.addCase(deleteQuestionAction.fulfilled, (state, action)=>{
-        //     state.loading= false
-        // })
+        builder.addCase(getAQuestionAction.fulfilled, (state, action)=>{
+            state.loading = false
+        })
+
+        builder.addCase(deleteQuestionAction.pending, (state, action)=>{
+            state.loading= true
+        });
+        builder.addCase(deleteQuestionAction.fulfilled, (state, action)=>{
+            state.loading= false
+        })
+
+        builder.addCase(searchQuestionAction.pending, (state, action)=>{
+            state.loading= true
+        })
+
+        builder.addCase(searchQuestionAction.fulfilled, (state, action)=>{
+            state.questions= action.payload
+            state.loading= false
+        })
+
     }
 })
 

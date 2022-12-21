@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { AiFillHeart } from "react-icons/ai";
-import { RiDislikeLine } from "react-icons/ri";
+import {  useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { addAnswerAction, getAnswersAction } from "../../features/answers";
+import {  getAnswersAction } from "../../features/answers";
 import "./Answers.css";
+// import { useState } from "react";
+// import { addCommentAction, fetchcommentAction } from "../../features/comment";
+import AnswerCard from "./AnswerCard";
 
 const Answers = () => {
   const { qid } = useParams();
@@ -13,49 +14,18 @@ const Answers = () => {
 
   useEffect(() => {
     dispatch(getAnswersAction(qid));
-  }, [ qid]);
+  }, [qid]);
 
-  const answers = useSelector((state) => state.answers);
-  console.log(answers.answers.questionAnswerRlt);
+  const { answers } = useSelector((state) => state.answers);
 
   return (
     <div className="myAnswers">
-      <h1>hello</h1>
-      <div className="quizAnsw">
-        {answers.answers.questionAnswerRlt?.map((answer) => (
-          <>
-            <h1>question title </h1>
-            <Link
-            onClick={()=> dispatch(addAnswerAction(answer.questionId))}
-             to={`/reply/${answer.questionId}`} className="btn_reply">
-                reply
-            </Link>
-
-            <p>{answer?.answer} </p>
-
-            <div className="thoughts">
-              <div className="options">
-                <AiFillHeart />
-                <RiDislikeLine />
-              </div>
-            </div>
-
-            <div className="btn_answers">
-              <button className="increment_btn">+</button>
-              <h4>{answer.upVote} </h4>
-              <button className="decrement_btn">-</button>
-              <h4>{answer?.downVote} </h4>
-            </div>
-
-            <h6 className="user">answered by:{answer?.userId} </h6>
-            <p>comment</p>
-            <div className="comments">
-              <textarea name="comment" id="comment" cols="30"></textarea>
-              <button className="btn_comment">submit</button>
-            </div>
-          </>
-        ))}
-      </div>
+      
+      {answers?.questionAnswerRlt?.map((answer, idx) => (
+        <div className="quizAnsw">
+          <AnswerCard key={idx} answer={answer} />
+        </div>
+      ))}
     </div>
   );
 };

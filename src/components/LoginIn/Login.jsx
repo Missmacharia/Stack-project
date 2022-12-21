@@ -12,6 +12,7 @@ const DEFAULT_LOGIN = {
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState(DEFAULT_LOGIN);
+  const [error, setError]= useState("")
 
   const dispatch = useDispatch()
 
@@ -21,12 +22,31 @@ const Login = () => {
 
   const handlerSubmit =(e)=>{
     e.preventDefault()
+    setError("")
+
+    if(loginForm.email=== ""){
+      setError("Please fill in your email")
+      return
+    }
+
+    if(loginForm.password===""){
+      setError("Password is Required")
+      return
+    }
+
     const user= {...loginForm}
     dispatch(loginUserAction(user))
+
+    alert("Login successfully")
   }
 
   return (
     <div className="login">
+      <div>
+        {error && (
+          <p className="error_message">{error} </p>
+        )}
+      </div>
       <form className="login_form">
         <input
           type="text"

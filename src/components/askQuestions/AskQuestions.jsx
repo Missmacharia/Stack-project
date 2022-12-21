@@ -24,7 +24,6 @@ const AskQuestions = () => {
   
 const handlerSubmit= (e)=>{
   e.preventDefault()
-  const userId=""
   const newQuestion= {...questionForm}
   //  dispatch(addQuestionAction({
   //   userId, newQuestion

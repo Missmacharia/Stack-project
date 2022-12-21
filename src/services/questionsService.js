@@ -4,7 +4,7 @@ import axios from "axios"
 const askQuizUrl= `http://localhost:8080/api/questions/addQuiz`
 const getQuiz= `http://localhost:8080/api/questions`
 const deleteQuestionURL = `http://localhost:8080/api/questions/deleteQuiz`
-
+const searchQuestionUrl = `http://localhost:8080/api/questions/search`
 
 export const askQuestions = async (question)=>{
     
@@ -25,6 +25,13 @@ export const getQuestion = async(id)=>{
 }
 
 export const deleteQuestion = async(id)=>{
-    const response =await axios.delete(`${deleteQuestionURL}/${id}`)
+    const users= JSON.parse(sessionStorage.getItem('users'))
+    const response =await axios.delete(`${deleteQuestionURL}/${id}`, {headers: {authorization: `Bearer ${users.token}`}})
+    return response
+}
+
+export const searchQuestion= async(details)=>{
+    const response = await axios.get(`${searchQuestionUrl}?search=${details.search}`)
+
     return response
 }

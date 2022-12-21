@@ -94,5 +94,10 @@
     text-decoration: none;
 }
 
-.question_field> a{
+.delete{
+    background-color: #F5C096;
+    color: #679289;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 10px;
 }

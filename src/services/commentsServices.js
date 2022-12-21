@@ -10,10 +10,10 @@ export const getComments= async(answerId)=>{
 }
 
 
-export const addComments= async(comment)=>{
+export const addComments= async(answerId, comment)=>{
     const users =JSON.parse(sessionStorage.getItem('users'))
 
     if(users.token){
-        return axios.post(addComentsURL, comment, {headers: {authorization: `Bearer ${users.token}`}})
+        return axios.post(`${addComentsURL}/${answerId}`, comment, {headers: {Authorization: `Bearer ${users.token}`}})
     }
 }

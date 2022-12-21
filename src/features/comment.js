@@ -6,9 +6,10 @@ import { addComments, getComments } from "../services/commentsServices";
 
 export const fetchcommentAction= createAsyncThunk(
     "fetch/comments-one",
-    async(comments, thunkAPI)=>{
+    async(id, thunkAPI)=>{
         try {
-            const res= await getComments(comments)
+            const res= await getComments(id)
+            console.log(res.data);
             return res.data
         } catch (error) {
             thunkAPI.rejectWithValue({
@@ -20,9 +21,9 @@ export const fetchcommentAction= createAsyncThunk(
 
 export const addCommentAction= createAsyncThunk(
     "add/comment-one",
-    async(comment, thunkAPI)=>{
+    async({answerId,comment}, thunkAPI)=>{
         try {
-            const response = await addComments(comment)
+            const response = await addComments(answerId, comment)
             return {comment: response}
         } catch (error) {
             thunkAPI.rejectWithValue({
@@ -47,7 +48,7 @@ const commentSlice= createSlice({
             state.loading =true
         });
         builder.addCase(fetchcommentAction.fulfilled, (state, action)=>{
-            state.comment =action.payload.comment
+            state.comment =action.payload
             state.loading= false
         });
 

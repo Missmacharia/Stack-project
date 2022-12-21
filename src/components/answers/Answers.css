@@ -1,17 +1,22 @@
+
 .myAnswers{
     background-color: #E9E9E7;
-    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .quizAnsw{
-    background-color: #FFFFFF;
+    margin-top: 20px;
+    background-color: #ffff;
     border-radius: 5px;
-    padding: 10px;
-    width: 600px;  
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+    padding: 20px;
 }
 
 .btn_answers{
@@ -33,18 +38,15 @@
     border-radius: 5px;
 }
 
-.btn_reply> a{
-    text-decoration: none;
+#comment{
+    width: 400px;
 }
+
 
 .comments{
     display: flex;
     align-items: center;
     gap: 20px;
-}
-
-#comment{
-    width: 400px;
 }
 
 .btn_comment{
@@ -61,7 +63,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: 3px 10px;
     margin-bottom: 10;
 }
 
@@ -70,24 +72,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: 3px 10px;
     margin-bottom: 10;
 }
-.user{
-    margin-top: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

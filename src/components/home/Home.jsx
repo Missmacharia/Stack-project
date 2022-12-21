@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { useDispatch } from "react-redux";
-import { getAQuestionAction, getQuestionsAction } from "../../features/question";
+import { deleteQuestionAction, getAQuestionAction, getQuestionsAction } from "../../features/question";
 
 
 
@@ -11,7 +11,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const questions = useSelector((state) => state.questions.questions);
-  console.log(questions);
   const count= useSelector((state)=> state.counter.count)
 
   useEffect(() => {
@@ -45,11 +44,7 @@ const Home = () => {
                   
                   <h3>{count} answers </h3>
                 </div>
-                {/* <div className="opinions">
-                  <button onClick={upvoteHandler} className="upvotes"> +</button>
-                  <h4>{count} </h4>
-                  <button onClick={downvoteHandler} className="downvotes"> -</button>
-                </div> */}
+                <button onClick={()=>dispatch(deleteQuestionAction(question.id))} className="delete">Delete</button>
               </div>
             </div>
           );

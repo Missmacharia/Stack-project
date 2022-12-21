@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addAnswer, getQuizAnsw } from "../services/answersService";
+import { addAnswer, getQuizAnsw, passVotes } from "../services/answersService";
 
 
 export const getAnswersAction = createAsyncThunk(
@@ -30,6 +30,21 @@ export const addAnswerAction = createAsyncThunk(
     }
   }
 );
+
+
+export const passVoteAction = createAsyncThunk(
+  "passAnswerVote",
+  async(upVote, downVote, thunkAPI)=>{
+    try {
+      const response = await passVotes(upVote, downVote)
+      return {upvote: response, downVote: response}
+    } catch (error) {
+      thunkAPI.rejectWithValue({
+        error: error.message
+      })
+    }
+  }
+)
 
 const initialState = {
   answers: [],
