@@ -12,49 +12,50 @@ const DEFAULT_LOGIN = {
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState(DEFAULT_LOGIN);
-  const [error, setError]= useState("")
+  const [error, setError] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const changeHandler= (e)=>{
-    setLoginForm((prev)=>({...prev, [e.target.name]: e.target.value}))
-  }
+  const changeHandler = (e) => {
+    setLoginForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  const handlerSubmit =(e)=>{
-    e.preventDefault()
-    setError("")
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    setError("");
 
-    if(loginForm.email=== ""){
-      setError("Please fill in your email")
-      return
+    if (loginForm.email === "") {
+      setError("Please fill in your email address");
+      return;
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(loginForm.email)
+    ) {
+      setError("invalid email");
+      return;
     }
 
-    if(loginForm.password===""){
-      setError("Password is Required")
-      return
+    if (loginForm.password === "") {
+      setError("Password is Required");
+      return;
     }
 
-    const user= {...loginForm}
-    dispatch(loginUserAction(user))
+    const user = { ...loginForm };
+    dispatch(loginUserAction(user));
 
-    alert("Login successfully")
-  }
+    alert("Login successfully");
+  };
 
   return (
     <div className="login">
-      <div>
-        {error && (
-          <p className="error_message">{error} </p>
-        )}
-      </div>
       <form className="login_form">
+        <div>{error && <p className="error_message">{error} </p>}</div>
         <input
           type="text"
           name="email"
           placeholder="yvonne@gmail.com"
           value={loginForm.email}
           onChange={changeHandler}
-          />
+        />
         <input
           type="password"
           name="password"
@@ -63,7 +64,9 @@ const Login = () => {
           onChange={changeHandler}
         />
         <Link to="/">
-        <button onClick={handlerSubmit} className="login_btn_user">Submit</button>
+          <button onClick={handlerSubmit} className="login_btn_user">
+            Submit
+          </button>
         </Link>
       </form>
     </div>

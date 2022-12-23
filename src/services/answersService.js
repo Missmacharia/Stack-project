@@ -3,7 +3,7 @@ import axios from "axios";
 
 const addAnswersUrl=`http://localhost:8080/api/answers/addAns`
 const getQuizAnswerUrl= `http://localhost:8080/api/answers`
-const passVoteUrl= `http://localhost:8080/api/answers/votes`
+
 
 export const addAnswer = async (answer)=>{
     
@@ -23,8 +23,3 @@ export const getQuizAnsw= async(questionId)=>{
     return response
 }
 
-export const passVotes= async(id, upVotes, downVote)=>{
-    const users= JSON.parse(sessionStorage.getItem('users'))
-    const response= await axios.post(`${passVoteUrl}/${id}`, upVotes,downVote, {headers:{authorization:`Bearer ${users.token}`}})
-    return response
-}

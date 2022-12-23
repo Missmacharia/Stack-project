@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loginUser } from "../services/userService";
-// const users= JSON.parse(sessionStorage.getItem('users'))
+const users= JSON.parse(sessionStorage.getItem('users'))
 
 
 const signUpUserUrl= `http://localhost:4000/api/auth/signup`
@@ -33,7 +33,7 @@ export const loginUserAction = createAsyncThunk(
             console.log("sdfgh");
             const response= await loginUser(user)
             console.log(response);
-            return {users: response}
+            return response
         } catch (error) {
            thunkAPI.rejectWithValue({
             error: error.message
@@ -46,7 +46,8 @@ export const loginUserAction = createAsyncThunk(
 
 
 const initialState= {
-    users: [],
+    users:  users ? {  users }
+    : { users: null },
     loading: false
 }
 

@@ -1,49 +1,164 @@
 .profile{
     background-color: #E9E9E7;
-    gap: 20px;
+    /* gap: 20px; */
     min-height: 88vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    /* align-items: center; */
 }
 
 .profile_user{
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+}
+
+.theProfile{
     background-color: #FFFFFF;
     border-radius: 5px;
-    padding: 10px;
+    margin: 70px 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 400px;
-    justify-content: center;
+    height: 400px;
+    padding: 20px;
 }
 
-.profile_img{
-    width: 300px;
-    border-radius: 10px;
-    
-}
 
-.profile_detail{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.user_take{
+.userDetails{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 20px;
+    width: 200px;
+   
 }
 
-.user_take > a{
+span{
+    margin: 0 0 -15px 0;
+    font-weight: 600;
+    font-size: 10px;
+    text-transform: capitalize
+}
+
+input{
+    padding: 8px;
+    margin: 0;
+    outline: none;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+input:focus{
+    border: 2px solid orange;
+}
+
+input::placeholder{
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: dimgray;
+}
+
+
+.profile_img {
+    border-radius: 910px;
+    height: 100px;
+}
+
+.submit_profile{
+    width: 300px;
+    text-align: center;
+    background-color: #565941;
+    color: white;
+    border: none;
+    margin: 20px 0 0 -100px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.submit_profile:hover{
+    background-color: orange;
+    color: black;
+    font-weight: 500;
+}
+
+.icons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon{
+    width: 18px;
+    height: 18px;
+    margin: 0 5px;
+}
+
+.icon:hover{
+    color: orange;
+}
+
+.my-questions{
+    background-color: white;
+    height: fit-content;
+    border-radius: 10px;
+    width: 45rem;
+    margin: 70px 0;
+}
+
+.qstn-title{
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.questn{
+    display: flex;
+    border-top: 1px solid rgb(181, 180, 180);
+    margin: 10px 0 0 0 ;
+}
+
+.dot{
+    background-color: orange;
+    width: 8px;
+    height: 6px;
+    border-radius: 6px;
+    margin: 23px 10px 0 24px;
+}
+
+.my-question{
     text-decoration: none;
+    color: dimgray;
+    margin: 5px 0 5px 0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.my-question:hover{
     color: black;
 }
 
-.userTitle{
-    
+.prfl{
+    position: relative;
+    margin: 0 20px 0 0;
+}
+
+.camera{
+    position: absolute;
+    background-color: yellow;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 50%;
+    margin-left: 75px;
+    margin-top: -35px;
+}
+
+.camera-icon{
+    width: 20px;
+    height: 20px;
 }

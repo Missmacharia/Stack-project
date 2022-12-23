@@ -1,7 +1,7 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { askQuestions, deleteQuestion, getQuestion, searchQuestion } from "../services/questionsService";
+import { askQuestions, deleteQuestion, getQuestion, searchQuestion, userQuestion } from "../services/questionsService";
 // import {  deleteDoc, deleteField, doc } from "firebase/firestore";
 // import { firestoreDb } from "./firebaseconfig";
 
@@ -21,6 +21,22 @@ export const getQuestionsAction= createAsyncThunk(
         } catch (error) {
             thunkAPI.rejectWithValue({
                 error: error.message
+            })
+        }
+    }
+)
+
+export const getUserQuestionAction= createAsyncThunk(
+    "fetch/single-userquestion",
+    async(userId, thunkAPI)=>{
+        try {
+            const response= await userQuestion(userId)
+            console.log(response);
+            return response.data
+        } catch (error) {
+            console.log(error.data);
+            thunkAPI.rejectWithValue({
+                error:error.message
             })
         }
     }
@@ -135,6 +151,14 @@ const questionsSlice= createSlice({
         })
 
         builder.addCase(searchQuestionAction.fulfilled, (state, action)=>{
+            state.questions= action.payload
+            state.loading= false
+        })
+
+        builder.addCase(getUserQuestionAction.pending, (state, action)=>{
+            state.loading= true
+        })
+        builder.addCase(getUserQuestionAction.fulfilled, (state, action)=>{
             state.questions= action.payload
             state.loading= false
         })

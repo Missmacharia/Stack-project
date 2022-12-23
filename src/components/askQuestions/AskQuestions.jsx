@@ -13,8 +13,7 @@ const AskQuestions = () => {
   const dispatch= useDispatch()
   
   const[questionForm, setQuestionForm]= useState(DEFAULT_QUESTIONS)
-
-
+  const [error, setError] = useState("")
 
   const handlerChange= (e)=>{
     setQuestionForm((prev)=>({...prev, [e.target.name]: e.target.value}))
@@ -25,9 +24,14 @@ const AskQuestions = () => {
 const handlerSubmit= (e)=>{
   e.preventDefault()
   const newQuestion= {...questionForm}
-  //  dispatch(addQuestionAction({
-  //   userId, newQuestion
-  //  }))
+  if(questionForm.title===""){
+    setError("Please state the question title")
+    return
+  }
+  if(questionForm.question=== ""){
+    setError("please fill in  a question")
+    return
+  }
    dispatch(addQuestionAction(
     newQuestion
    ))
@@ -42,6 +46,9 @@ const cancelHandler=()=>{
 
   return (
     <div className="askQuetions">
+     <div>
+        {error && <p className="error_message">{error}</p>}
+        </div>
       <div className="white_bc">
         <h1>New Questions</h1>
         <form className="question_form">

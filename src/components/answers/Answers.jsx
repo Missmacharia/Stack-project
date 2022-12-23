@@ -4,6 +4,7 @@ import {  useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {  getAnswersAction } from "../../features/answers";
 import "./Answers.css";
+import { Link } from "react-router-dom";
 // import { useState } from "react";
 // import { addCommentAction, fetchcommentAction } from "../../features/comment";
 import AnswerCard from "./AnswerCard";
@@ -20,7 +21,9 @@ const Answers = () => {
 
   return (
     <div className="myAnswers">
-      
+        <Link to={`/reply/${qid}`} className="btn_reply">
+        reply
+      </Link>
       {answers?.questionAnswerRlt?.map((answer, idx) => (
         <div className="quizAnsw">
           <AnswerCard key={idx} answer={answer} />

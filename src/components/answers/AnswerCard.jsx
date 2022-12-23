@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { addCommentAction, fetchcommentAction } from "../../features/comment";
 import { Link } from "react-router-dom";
-import { AiFillHeart } from "react-icons/ai";
-import { RiDislikeLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+import { decrementAction, incrementAction } from "../../features/counter";
 
 
 const DEFAULT_COMMENT = {
@@ -18,6 +17,9 @@ const AnswerCard = ({ answer }) => {
 
   const { comment } = useSelector((state) => state.comment);
   console.log(comment);
+
+  const count= useSelector((state)=> state.counter.count)
+
   const dispatch = useDispatch();
 
   const changeHandler = (e) => {
@@ -57,45 +59,20 @@ const AnswerCard = ({ answer }) => {
     }
   }, [selectedAnswer])
 
-  // useEffect(() => {
-  //   console.log('workings')
-  //   if (answer?.id) {
-  //     console.log(answer?.id);
-  //     dispatch(fetchcommentAction(answer?.id));
-  //   }
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   // dispatch(getAnswersAction(selectedAnswer))
-    
-  //   if(answer.id !== setSelectedAnswer){
-  //     setFormComment(DEFAULT_COMMENT)
-  //   }
-  //   dispatch(fetchcommentAction(selectedAnswer))
-  // }, [selectedAnswer])
-
-  // console.log(selectedAnswer)
-
   return (
     <>
       <h4 onClick={handleComments}>answer</h4>
-      <Link to={`/reply/${answer.questionId}`} className="btn_reply">
+      {/* <Link to={`/reply/${answer.questionId}`} className="btn_reply">
         reply
-      </Link>
+      </Link> */}
 
       <p>{answer?.answer} </p>
 
-      <div className="thoughts">
-        <div className="options">
-          <AiFillHeart />
-          <RiDislikeLine />
-        </div>
-      </div>
 
       <div className="btn_answers">
-        <button className="increment_btn">+</button>
-        <h4>{answer.upVote} </h4>
-        <button className="decrement_btn">-</button>
+        <button onClick={()=>dispatch(incrementAction(answer.id))} className="increment_btn">upvote</button>
+        <h4>{count} </h4>
+        <button onClick={()=>dispatch(decrementAction(answer.id))} className="decrement_btn">downvote</button>
         <h4>{answer?.downVote} </h4>
       </div>
 
@@ -112,15 +89,7 @@ const AnswerCard = ({ answer }) => {
       ) : (<div>No comments</div>)}
       </>
       )}
-      {/* {selectedAnswer && (
-        <>
-        {comment?.comment}
-        {comment?.map((comment) => {
-        return <h3>{comment?.comment} </h3>;
-      })} 
-      </>
-      )} */}
-      {/* <Comments /> */}
+   
       
       <div className="comments">
         <textarea

@@ -33,6 +33,7 @@ const Navbar = () => {
       setFound("Question not found")
       return
     }
+  
     const question= {...search}
     dispatch(searchQuestionAction(question))
     setSearch(DEFAULT_SEARCH)
@@ -59,7 +60,7 @@ const Navbar = () => {
       <button className="btn_search" onClick={searchHandler}>Search</button>
       <div className="nav_lnks">
         {/* <Link to="/">Home</Link> */}
-        {/* <Link to="/profile">Profile</Link> */}
+        <Link to="/profile">Profile</Link>
         <Link to="/login">Login</Link>
         <Link to="/signin">Sign up</Link>
       </div>

@@ -2,6 +2,7 @@
 .myAnswers{
     background-color: #E9E9E7;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;

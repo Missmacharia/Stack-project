@@ -27,12 +27,15 @@ const SignIn = () => {
     setError("");
     //validate inputs
     if (signupForm.userName === "") {
-      setError("Please fill in yoor name");
+      setError("Please fill in your name");
       return;
     }
 
     if (signupForm.email === "") {
       setError("Please fill in your email address");
+      return;
+    } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(signupForm.email)){
+      setError("invalid email")
       return;
     }
 
@@ -48,10 +51,10 @@ const SignIn = () => {
 
   return (
     <div className="signin">
+      <form className="signin_form">
       <div>
         {error && <p className="error_message">{error}</p>}
         </div>
-      <form className="signin_form">
         <input
           type="text"
           name="userName"
